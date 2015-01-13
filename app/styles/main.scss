@@ -1,0 +1,37 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "base/base";
+
+body {
+    @include outer-container;
+
+    .main-container {
+        @include span-columns(12);
+        @include omega();
+
+        $input-elements-height: 42px;
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            @include outer-container;
+            * {
+                height: $input-elements-height;
+            }
+            input {
+                @include span-columns(9);
+            }
+            button {
+                @include span-columns(3);
+
+                .loader {
+                    img {
+                        height: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

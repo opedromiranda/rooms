@@ -1,0 +1,13 @@
+<section class="main-container" ng-controller="HomeController">
+<h2>Create a room:</h2>
+
+<form>
+    <input type="text" placeholder="Room Name" ng-model="roomName" ng-disabled="isCreatingRoom" />
+    <button ng-click="createRoom()">
+        <span ng-show="!isCreatingRoom">Create Room</span>
+        <span ng-show="isCreatingRoom" class="loader"><img src="images/svg-loaders/puff.svg"/></span>
+    </button>
+</form>
+
+<video id="video" autoplay="autoplay" style="width: 250px; height: 250px"></video>
+<section>
