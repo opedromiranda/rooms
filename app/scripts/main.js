@@ -20,6 +20,10 @@ angular.module('rtcRoom', [
                 .state('home', {
                     url: '/',
                     templateUrl: 'views/home.html'
+                })
+                .state('room', {
+                    url: '/room/:roomName',
+                    templateUrl: 'views/room.html'
                 });
 
     }]);
