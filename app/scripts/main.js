@@ -5,12 +5,14 @@ require('angular-ui-router');
 require('./controllers');
 require('./services');
 require('./factories');
+require('./directives');
 
 angular.module('rtcRoom', [
     'ui.router',
     'rtcRoom.controllers',
     'rtcRoom.services',
-    'rtcRoom.factories'
+    'rtcRoom.factories',
+    'rtcRoom.directives'
 ])
 .config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider,   $urlRouterProvider) {

@@ -18,11 +18,11 @@ module.exports = function ($q) {
     /**
      * Returns a promise that will resolve the User Media Stream
      * @param {Object} options Options for getUserMedia
-     * @return {Promise} 
+     * @return {Promise}
      */
     this.getUserMediaStream = function (options) {
         var deferred = $q.defer();
-        this.navigator.getUserMedia(options,
+        navigator.getUserMedia(options,
             function onSuccess(stream) {
                 deferred.resolve(stream);
             }, function onError(error) {

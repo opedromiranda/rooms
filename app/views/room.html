@@ -1,4 +1,8 @@
 <section class="main-container" ng-controller="RoomController">
 <h3>Room {{roomName}}</h3>
-<video id="video" autoplay="autoplay" style="width: 250px; height: 250px"></video>
+<button ng-click="toggleCamera()">Camera: {{getCameraState()}}</button>
+<button ng-click="toggleAudio()">Audio: {{getAudioState()}}</button><br/>
+<div ng-repeat="stream in streams">
+    <r-stream stream="stream"><r-stream>
+</div>
 </section>
