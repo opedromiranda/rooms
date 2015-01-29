@@ -9,6 +9,11 @@ module.exports = function RoomController($scope, $stateParams, navigator) {
     var isAudioActive = false;
     var ownStream;
 
+    var mediaOptions = {
+        video: false,
+        audio: false
+    }
+
     // get room name from params
     $scope.roomName = $stateParams.roomName;
 
@@ -16,40 +21,53 @@ module.exports = function RoomController($scope, $stateParams, navigator) {
     $scope.streams = [];
 
     $scope.getCameraState = function () {
-        return isCameraActive ? 'on' : 'off';
+        return mediaOptions.video ? 'on' : 'off';
     };
 
     $scope.getAudioState = function () {
-        return isAudioActive ? 'on' : 'off';
+        return mediaOptions.audio ? 'on' : 'off';
     };
 
     $scope.toggleCamera = function () {
-        if(!isCameraActive) {
-            navigator.getUserMediaStream({
-                video: true
-            }).then(function (stream) {
-                ownStream = stream;
-                isCameraActive = true;
-                $scope.streams.push(stream);
-            });
+        mediaOptions.video = !mediaOptions.video;
+        if(!mediaOptions.video && !mediaOptions.audio) {
+            removeOwnStream();
         } else {
-            ownStream.stop();
-            isCameraActive = false;
-            $scope.streams.splice($scope.streams.indexOf(ownStream), 1);
+            loadUserMediaStream();
         }
     };
 
     $scope.toggleAudio = function () {
-        if(!isAudioActive) {
-            navigator.getUserMediaStream({
-                video: true,
-                audio: true
-            }).then(function (stream) {
-                ownStream = stream;
-                isCameraActive = true;
-                $scope.streams.push(stream);
-            });
-        };
+        mediaOptions.audio = !mediaOptions.audio;
+        if(!mediaOptions.video && !mediaOptions.audio) {
+            removeOwnStream();
+        } else {
+            loadUserMediaStream();
+        }
     };
+
+    function removeOwnStream() {
+        var ownStreamIndex = ownStream ? $scope.streams.indexOf(ownStream) : -1;
+        if(ownStreamIndex !== -1) {
+            ownStream.stop();
+            $scope.streams.splice(ownStreamIndex, 1);
+            return true;
+        }
+        return false;
+    }
+
+    function loadUserMediaStream() {
+        navigator.getUserMediaStream(mediaOptions)
+            .then(function handleStream(stream) {
+                var ownStreamIndex = ownStream ? $scope.streams.indexOf(ownStream) : -1;
+                if(ownStreamIndex !== -1) {
+                    ownStream.stop();
+                    $scope.streams[ownStreamIndex] = stream;
+                } else {
+                    $scope.streams.push(stream);
+                }
+                ownStream = stream;
+            })
+    }
 
 };

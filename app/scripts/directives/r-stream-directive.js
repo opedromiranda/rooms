@@ -18,7 +18,6 @@ module.exports = function() {
 
             video.src = createSrc($scope.stream);
             video.play();
-            console.log('stream directive - ', $element.find('video'));
         }
     };
 };

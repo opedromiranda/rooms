@@ -1,7 +1,7 @@
 <section class="main-container" ng-controller="RoomController">
-<h3>Room {{roomName}}</h3>
-<button ng-click="toggleCamera()">Camera: {{getCameraState()}}</button>
-<button ng-click="toggleAudio()">Audio: {{getAudioState()}}</button><br/>
+<h3>room {{roomName}}</h3>
+<button ng-click="toggleCamera()">camera: {{getCameraState()}}</button>
+<button ng-click="toggleAudio()">audio: {{getAudioState()}}</button><br/>
 <div ng-repeat="stream in streams">
     <r-stream stream="stream"><r-stream>
 </div>
