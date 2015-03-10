@@ -4,11 +4,11 @@
 * for all the interaction between users
 */
 
-module.exports = function RoomController($scope, $stateParams, navigator) {
+module.exports = function RoomController($scope, $stateParams, $window, navigator, PeerConnectionService) {
     var isCameraActive = false;
     var isAudioActive = false;
     var ownStream;
-
+    var pc = PeerConnectionService.create();
     var mediaOptions = {
         video: false,
         audio: false
@@ -67,7 +67,11 @@ module.exports = function RoomController($scope, $stateParams, navigator) {
                     $scope.streams.push(stream);
                 }
                 ownStream = stream;
-            })
+            });
     }
+
+    pc.onaddstream = function (evt) {
+        $scope.streams.push(evt.stream);
+    };
 
 };

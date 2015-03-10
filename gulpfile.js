@@ -1,3 +1,5 @@
+var config = require('./config');
+
 var gulp = require('./gulp')([
     'browserify',
     'jshint',
@@ -7,6 +9,8 @@ var gulp = require('./gulp')([
     'images',
     'styles'
 ]);
+
+config.init('dev');
 
 gulp.task('watch', ['jshint'], function() {
     gulp.watch(['app/scripts/*.js', 'app/scripts/**/*.js'],

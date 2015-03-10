@@ -1,11 +1,6 @@
-## Angular Seed with Browserify, Gulp and Karma
+## Rooms
 
-This project is a seed for Angular projects and includes:
-
-* Browserify
-* Karma
-* JSHint
-
+This is a videoconference application that uses WebRTC.
 
 Install dependencies by running
 ```
@@ -14,7 +9,7 @@ npm install
 
 Make it run
 ```
-npm start
+gulp start
 ```
 
 

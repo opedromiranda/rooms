@@ -8,4 +8,5 @@ var RoomController = require('./room-controller');
 module.exports = angular.module('rtcRoom.controllers', [])
     .controller('DummyController', ['$scope', DummyController])
     .controller('HomeController', ['$scope', '$state', 'NavigatorService', HomeController])
-    .controller('RoomController', ['$scope', '$stateParams', 'NavigatorService', RoomController]);
+    .controller('RoomController',
+        ['$scope', '$stateParams', '$window', 'NavigatorService', 'PeerConnectionService', RoomController]);
